@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,31 +10,53 @@
         :root {
             --primary: #111111;
             --secondary: #666666;
-            --bg: #f8f9fa;
+            --bg: #ffffff;
             --surface: #ffffff;
             --border: #e0e0e0;
-            --accent: #f0f0f0;
-            --radius: 12px;
+            --accent: #f8f9fa;
+            --radius: 16px;
             --radius-pill: 50px;
+            /* Guardian Theme Colors */
+            --guardian-blue: #0b3d91;
+            --guardian-light-blue: #1e62d0;
+            --guardian-gold: #c5a059;
+            --guardian-red-light: #ef5350;
+            --guardian-orange: #ff9800;
+            --guardian-green: #4caf50;
+            --guardian-yellow: #ffc107;
+
+            /* Projects */
+            --proj-apca: #2196f3;
+            --proj-trd: #9c27b0;
+            --proj-power: #e91e63;
+            --proj-help: #00bcd4;
+            --proj-step: #795548;
+
+            --guardian-gradient: linear-gradient(135deg, var(--guardian-blue), var(--guardian-light-blue));
+            --guardian-gradient-hover: linear-gradient(135deg, var(--guardian-light-blue), #2a75e6);
+            --gold-gradient: linear-gradient(135deg, #c5a059, #e8c985);
         }
 
         body {
             font-family: 'Prompt', sans-serif;
-            background-color: var(--bg);
+            background-color: #f8f9fa;
             color: var(--primary);
             margin: 0;
             padding: 40px 20px;
             display: flex;
             justify-content: center;
+            min-height: 100vh;
         }
 
         .container {
             width: 100%;
-            max-width: 720px;
-            background: var(--surface);
+            max-width: 760px;
+            background: #ffffff;
             padding: 40px 50px;
             border-radius: var(--radius);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            /* More depth */
+            border: 1px solid rgba(0, 0, 0, 0.03);
             box-sizing: border-box;
         }
 
@@ -41,58 +64,77 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px solid var(--border);
             padding-bottom: 20px;
             margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--guardian-gold);
+            /* Changed to gold for contrast against blue bg */
+            border-radius: 2px;
         }
 
         .header h2 {
             margin: 0;
-            font-weight: 600;
-            font-size: 24px;
+            font-weight: 700;
+            font-size: 32px;
             letter-spacing: -0.5px;
+            background: var(--guardian-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .date-display {
-            font-size: 14px;
+            font-size: 15px;
             color: var(--secondary);
-            font-weight: 300;
+            font-weight: 500;
         }
+
 
         .form-group {
             margin-bottom: 35px;
             animation: fadeIn 0.5s ease-in-out;
         }
 
-        .section-label {
-            display: block;
-            font-weight: 500;
-            font-size: 15px;
-            margin-bottom: 15px;
-            color: var(--primary);
+
+        /* Category Specific Focus Colors */
+        .input-loan:focus {
+            border-color: var(--guardian-blue) !important;
+            box-shadow: 0 0 10px rgba(11, 61, 145, 0.15) !important;
         }
 
-        /* Minimal Inputs */
-        .minimal-input, select {
-            width: 100%;
-            padding: 12px 0;
-            border: none;
-            border-bottom: 1px solid var(--border);
-            background: transparent;
-            font-family: 'Prompt', sans-serif;
-            font-size: 16px;
-            color: var(--primary);
-            transition: border-color 0.3s ease;
-            outline: none;
+        .input-insurance:focus {
+            border-color: var(--guardian-orange) !important;
+            box-shadow: 0 0 10px rgba(255, 152, 0, 0.15) !important;
         }
 
-        .minimal-input:focus, select:focus {
-            border-bottom-color: var(--primary);
+        .input-debt:focus {
+            border-color: var(--guardian-green) !important;
+            box-shadow: 0 0 10px rgba(76, 175, 80, 0.15) !important;
+        }
+
+        .input-project:focus {
+            border-color: var(--guardian-gold) !important;
+            box-shadow: 0 0 10px rgba(197, 160, 89, 0.15) !important;
+        }
+
+        .input-marketing:focus {
+            border-color: #9c27b0 !important;
+            box-shadow: 0 0 10px rgba(156, 39, 176, 0.15) !important;
         }
 
         .minimal-input:disabled {
             color: #aaa;
-            border-bottom-color: #f0f0f0;
+            background: #f9f9f9;
         }
 
         /* High-End Pads (Pill Buttons) */
@@ -102,36 +144,111 @@
             flex-wrap: wrap;
         }
 
-        .pad-group input[type="radio"], 
+        .pad-group input[type="radio"],
         .pad-group input[type="checkbox"] {
             display: none;
         }
 
         .pad-label {
-            padding: 10px 24px;
-            border: 1px solid var(--border);
+            padding: 11px 26px;
+            border: 1.5px solid var(--border);
             border-radius: var(--radius-pill);
             cursor: pointer;
             color: var(--secondary);
+            background: #fff;
             font-size: 14px;
-            font-weight: 400;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
             user-select: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
         }
 
-        .pad-group input:checked + .pad-label {
-            background-color: var(--primary);
-            color: var(--surface);
-            border-color: var(--primary);
+        .pad-label:hover {
+            border-color: #bbb;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-1px);
+        }
+
+        /* Default Blue - Guardian Blue when checked */
+        .pad-group input:checked+.pad-label {
+            background: linear-gradient(135deg, #0b3d91, #1e62d0);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 6px 18px rgba(11, 61, 145, 0.35);
+            transform: scale(1.05) translateY(-1px);
+        }
+
+        /* Gold theme - for BO seller */
+        .pad-group input:checked+.pad-label.gold-theme {
+            background: linear-gradient(135deg, #b8892a, #e8c985);
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(197, 160, 89, 0.45);
+            border-color: transparent;
+        }
+
+        /* Themed Labels - rich gradients */
+        .pad-group input:checked+.pad-label.theme-red {
+            background: linear-gradient(135deg, #c62828, #ef5350);
+            box-shadow: 0 6px 18px rgba(198, 40, 40, 0.4);
+        }
+
+        .pad-group input:checked+.pad-label.theme-orange {
+            background: linear-gradient(135deg, #e65100, #ff9800);
+            box-shadow: 0 6px 18px rgba(230, 81, 0, 0.4);
+        }
+
+        .pad-group input:checked+.pad-label.theme-green {
+            background: linear-gradient(135deg, #1b5e20, #4caf50);
+            box-shadow: 0 6px 18px rgba(27, 94, 32, 0.4);
+        }
+
+        .pad-group input:checked+.pad-label.theme-yellow {
+            background: linear-gradient(135deg, #f57f17, #ffc107);
+            color: #fff;
+            box-shadow: 0 6px 18px rgba(245, 127, 23, 0.4);
+        }
+
+        /* Project Colors - unique per project */
+        .pad-group input:checked+.pad-label.theme-proj-apca {
+            background: linear-gradient(135deg, #0d47a1, #2196f3);
+            box-shadow: 0 6px 18px rgba(33, 150, 243, 0.45);
+        }
+
+        .pad-group input:checked+.pad-label.theme-proj-trd {
+            background: linear-gradient(135deg, #4a148c, #9c27b0);
+            box-shadow: 0 6px 18px rgba(156, 39, 176, 0.45);
+        }
+
+        .pad-group input:checked+.pad-label.theme-proj-power {
+            background: linear-gradient(135deg, #880e4f, #e91e63);
+            box-shadow: 0 6px 18px rgba(233, 30, 99, 0.45);
+        }
+
+        .pad-group input:checked+.pad-label.theme-proj-help {
+            background: linear-gradient(135deg, #006064, #00bcd4);
+            box-shadow: 0 6px 18px rgba(0, 188, 212, 0.45);
+        }
+
+        .pad-group input:checked+.pad-label.theme-proj-step {
+            background: linear-gradient(135deg, #3e2723, #795548);
+            box-shadow: 0 6px 18px rgba(121, 85, 72, 0.45);
+        }
+
+        .pad-group input:checked+.pad-label.theme-proj-skip {
+            background: linear-gradient(135deg, #1b5e20, #66bb6a);
+            box-shadow: 0 6px 18px rgba(102, 187, 106, 0.45);
         }
 
         /* Sub Sections */
         .sub-section {
-            margin-top: 15px;
-            padding: 20px;
-            background-color: #fafafa;
+            margin-top: 20px;
+            padding: 25px;
+            background: #fdfdfd;
+            /* Lighter/Premium feel */
+            border: 1px solid rgba(0, 0, 0, 0.04);
             border-radius: var(--radius);
-            display: none; /* Hidden by default */
+            display: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01);
         }
 
         .sub-section.active {
@@ -160,253 +277,525 @@
         .submit-btn {
             width: 100%;
             padding: 18px;
-            background-color: var(--primary);
+            background: var(--guardian-gradient);
             color: var(--surface);
             border: none;
             border-radius: var(--radius-pill);
             font-size: 16px;
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             font-family: 'Prompt', sans-serif;
-            margin-top: 20px;
+            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(11, 61, 145, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--guardian-gradient-hover);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(11, 61, 145, 0.3);
+        }
+
+        .submit-btn:hover::before {
+            opacity: 1;
         }
 
         /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
+
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        /* General Form Elements */
+        .minimal-input,
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 15px;
+            color: var(--primary);
+            background-color: #fdfdfd;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-sizing: border-box;
+            /* Added box-sizing */
+        }
+
+        .minimal-input:focus,
+        select:focus {
+            border-color: var(--guardian-blue);
+            box-shadow: 0 0 0 3px rgba(11, 61, 145, 0.1);
+            outline: none;
+        }
+
+        select {
+            appearance: none;
+            /* Remove default arrow */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.8%204.9-4.7%2011.4-2.9%2017.7l139.3%20139.3c2.8%202.8%206.7%204.4%2010.6%204.4s7.8-1.6%2010.6-4.4l139.3-139.3c1.8-6.3.9-12.8-2.9-17.7z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 12px;
+            padding-right: 35px;
+            /* Make space for the arrow */
+        }
+
+        /* Section Labels */
+        .section-label {
+            display: block;
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+            /* Added box-sizing */
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background: var(--guardian-gold);
+            margin-right: 10px;
+            border-radius: 4px;
+            box-shadow: 0 0 8px rgba(197, 160, 89, 0.5);
+        }
+
+        .shine-text {
+            background: linear-gradient(90deg, var(--guardian-blue), var(--guardian-gold), var(--guardian-blue));
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
         }
 
         /* Responsive */
         @media (max-width: 600px) {
-            .container { padding: 30px 20px; }
-            .header { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .sub-row { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .sub-label { width: 100%; }
+            .container {
+                padding: 30px 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .sub-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .sub-label {
+                width: 100%;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <div class="header">
-        <h2>Daily Report</h2>
-        <div class="date-display" id="displayDate">--/--/----</div>
-    </div>
-
-    <form id="luxuryForm">
-        
-        <div class="form-group">
-            <label class="section-label">1. สาขา (Branch)</label>
-            <select id="branch" required>
-                <option value="" disabled selected>เลือกสาขาของคุณ</option>
-                <option>สาขาเขาช่องพราน</option><option>สาขานางแก้ว</option><option>สาขาจอมบึง</option>
-                <option>สาขาดอนตูมราชบุรี</option><option>สาขาสวนผึ้ง</option><option>สาขาบ้านคา</option>
-                <option>สาขาด่านทับตะโก</option><option>สาขาหุบกระทิง</option><option>สาขาชัฎป่าหวาย</option>
-                <option>สาขาหนองเสือ</option><option>สาขาท่ามะกา</option><option>สาขาลูกแก</option>
-                <option>สาขาหนองตากยา</option><option>สาขาท่าเรือ</option><option>สาขาตะคร้ำเอน</option>
-            </select>
+    <div class="container">
+        <div class="header">
+            <h2>รายงานยอดประจำวัน</h2>
+            <div class="date-display" id="displayDate">--/--/----</div>
         </div>
 
-        <div class="form-group">
-            <label class="section-label">2. ยอดจัดสินเชื่อวันนี้ (Loan Amount)</label>
-            <div class="pad-group" style="margin-bottom: 15px;">
-                <input type="checkbox" id="noLoan" onchange="toggleLoanAmount()">
-                <label class="pad-label" for="noLoan">ไม่มียอดจัด (No Loan)</label>
+        <form id="luxuryForm">
+
+            <div class="form-group">
+                <label class="section-label">🏢 1. สาขา (Branch)</label>
+                <select id="branch" required>
+                    <option value="" disabled selected>เลือกสาขาของคุณ</option>
+                    <option value="KCP">สาขาเขาช่องพราน</option>
+                    <option value="NKW">สาขานางแก้ว</option>
+                    <option value="JBG">สาขาจอมบึง</option>
+                    <option value="DTR">สาขาดอนตูมราชบุรี</option>
+                    <option value="SPH">สาขาสวนผึ้ง</option>
+                    <option value="BNK">สาขาบ้านคา</option>
+                    <option value="DTT">สาขาด่านทับตะโก</option>
+                    <option value="HBK">สาขาหุบกระทิง</option>
+                    <option value="CPW">สาขาชัดฎป่าหวาย</option>
+                    <option value="NSR">สาขาหนองเสือ</option>
+                    <option value="TMK">สาขาท่ามะกา</option>
+                    <option value="LKK">สาขาลูกแก</option>
+                    <option value="NTY">สาขาหนองตากยา</option>
+                    <option value="TRW">สาขาท่าเรือ</option>
+                    <option value="TKE">สาขาตะคร้ำเอน</option>
+                </select>
             </div>
-            <input type="number" id="loanAmount" class="minimal-input" placeholder="ระบุจำนวนเงิน (THB)" min="0">
-        </div>
 
-        <div class="form-group">
-            <label class="section-label">3. ยอดขายประกันวันนี้ (Insurance)</label>
-            <div class="pad-group">
-                <input type="radio" name="insType" id="insLife" value="life" onchange="toggleInsuranceSeller()">
-                <label class="pad-label" for="insLife">ประกันชีวิต</label>
+            <div class="form-group">
+                <label class="section-label">💰 2. ยอดจัดสินเชื่อวันนี้ (Loan Amount)</label>
+                <div class="pad-group" style="margin-bottom: 15px;">
+                    <input type="checkbox" id="noLoan" onchange="toggleLoanAmount()">
+                    <label class="pad-label theme-red" for="noLoan">ไม่มียอดจัด (No Loan)</label>
+                </div>
+                <div class="pad-group" style="margin-bottom: 15px;" id="loanTypeGroup">
+                    <input type="checkbox" id="loanMoto" name="loanType" value="moto">
+                    <label class="pad-label" for="loanMoto">🏍️ รถมอเตอร์ไซค์</label>
 
-                <input type="radio" name="insType" id="insNonLife" value="nonlife" onchange="toggleInsuranceSeller()">
-                <label class="pad-label" for="insNonLife">ประกันวินาศภัย</label>
+                    <input type="checkbox" id="loanCar" name="loanType" value="car">
+                    <label class="pad-label" for="loanCar">🚗 รถยนต์</label>
 
-                <input type="radio" name="insType" id="insNone" value="none" onchange="toggleInsuranceSeller()">
-                <label class="pad-label" for="insNone">ไม่มียอดขาย</label>
+                    <input type="checkbox" id="loanTruck" name="loanType" value="truck">
+                    <label class="pad-label" for="loanTruck">🚚 รถบรรทุก</label>
+
+                    <input type="checkbox" id="loanAgri" name="loanType" value="agricultural">
+                    <label class="pad-label" for="loanAgri">🚜 รถการเกษตร</label>
+
+                    <input type="checkbox" id="loanLand" name="loanType" value="land">
+                    <label class="pad-label" for="loanLand">🌱 ที่ดิน</label>
+                </div>
+                <input type="number" id="loanAmount" class="minimal-input input-loan" placeholder="ระบุจำนวนเงิน (THB)"
+                    min="0">
             </div>
 
-            <div id="sellerBox" class="sub-section">
-                <div class="sub-row">
-                    <span class="sub-label">ผู้ขาย (Seller) :</span>
-                    <div class="pad-group">
-                        <input type="radio" name="seller" id="sellerBM" value="BM">
-                        <label class="pad-label" for="sellerBM">BM</label>
-                        
-                        <input type="radio" name="seller" id="sellerBO" value="BO">
-                        <label class="pad-label" for="sellerBO">BO</label>
+            <div class="form-group">
+                <label class="section-label">🛡️ 3. ยอดขายประกันวันนี้ (Insurance)</label>
+                <div class="pad-group" style="margin-bottom: 20px;">
+                    <input type="checkbox" id="insNone" value="none" onchange="toggleInsuranceNone()">
+                    <label class="pad-label theme-red" for="insNone" id="labelInsNone">ไม่มียอดขาย</label>
+                </div>
+
+                <div id="insuranceContainer">
+                    <div style="margin-bottom: 25px;">
+                        <label class="sub-label" style="display:block; margin-bottom: 12px; font-weight: 500;">👤 ผู้ขาย
+                            (Seller) :</label>
+                        <div class="pad-group">
+                            <input type="checkbox" id="sellerBM" value="BM" onchange="toggleSellerSection('BM')">
+                            <label class="pad-label" for="sellerBM">พนักงานขาย (BM)</label>
+
+                            <input type="checkbox" id="sellerBO1" value="BO1" onchange="toggleSellerSection('BO1')">
+                            <label class="pad-label gold-theme" for="sellerBO1">พนักงานขาย (BO1)</label>
+
+                            <input type="checkbox" id="sellerBO2" value="BO2" onchange="toggleSellerSection('BO2')">
+                            <label class="pad-label gold-theme" for="sellerBO2">พนักงานขาย (BO2)</label>
+                        </div>
+                    </div>
+
+                    <!-- BM Section -->
+                    <div id="sectionBM" class="sub-section" style="border-left: 4px solid var(--guardian-blue);">
+                        <div style="font-weight: 600; color: var(--guardian-blue); margin-bottom: 15px;">📊 ยอดขาย BM
+                        </div>
+                        <div class="pad-group" style="margin-bottom: 15px;">
+                            <input type="checkbox" id="bmInsLife" onchange="togglePremiumInputSeller('BM', 'Life')">
+                            <label class="pad-label theme-orange" for="bmInsLife">ประกันชีวิต</label>
+                            <input type="checkbox" id="bmInsNonLife"
+                                onchange="togglePremiumInputSeller('BM', 'NonLife')">
+                            <label class="pad-label" for="bmInsNonLife">ประกันวินาศภัย</label>
+                        </div>
+                        <div id="bmPremiumBox" style="display: none; flex-direction: column; gap: 15px;">
+                            <div class="sub-row" id="bmPremiumLifeRow" style="display: none;">
+                                <span class="sub-label" style="width: 180px;">เบี้ยประกันชีวิต (BM) :</span>
+                                <input type="number" id="bmPremiumLifeAmount" class="minimal-input input-loan"
+                                    placeholder="ระบุจำนวนเงิน (THB)" min="0">
+                            </div>
+                            <div class="sub-row" id="bmPremiumNonLifeRow" style="display: none;">
+                                <span class="sub-label" style="width: 180px;">เบี้ยประกันวินาศภัย (BM) :</span>
+                                <input type="number" id="bmPremiumNonLifeAmount" class="minimal-input input-loan"
+                                    placeholder="ระบุจำนวนเงิน (THB)" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BO1 Section -->
+                    <div id="sectionBO1" class="sub-section" style="border-left: 4px solid var(--guardian-gold);">
+                        <div style="font-weight: 600; color: var(--guardian-gold); margin-bottom: 15px;">📊 ยอดขาย BO1
+                        </div>
+                        <div class="pad-group" style="margin-bottom: 15px;">
+                            <input type="checkbox" id="bo1InsLife" onchange="togglePremiumInputSeller('BO1', 'Life')">
+                            <label class="pad-label theme-orange" for="bo1InsLife">ประกันชีวิต</label>
+                            <input type="checkbox" id="bo1InsNonLife"
+                                onchange="togglePremiumInputSeller('BO1', 'NonLife')">
+                            <label class="pad-label" for="bo1InsNonLife">ประกันวินาศภัย</label>
+                        </div>
+                        <div id="bo1PremiumBox" style="display: none; flex-direction: column; gap: 15px;">
+                            <div class="sub-row" id="bo1PremiumLifeRow" style="display: none;">
+                                <span class="sub-label" style="width: 180px;">เบี้ยประกันชีวิต (BO1) :</span>
+                                <input type="number" id="bo1PremiumLifeAmount" class="minimal-input input-loan"
+                                    placeholder="ระบุจำนวนเงิน (THB)" min="0">
+                            </div>
+                            <div class="sub-row" id="bo1PremiumNonLifeRow" style="display: none;">
+                                <span class="sub-label" style="width: 180px;">เบี้ยประกันวินาศภัย (BO1) :</span>
+                                <input type="number" id="bo1PremiumNonLifeAmount" class="minimal-input input-loan"
+                                    placeholder="ระบุจำนวนเงิน (THB)" min="0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BO2 Section -->
+                    <div id="sectionBO2" class="sub-section" style="border-left: 4px solid #9c6200;">
+                        <div style="font-weight: 600; color: #9c6200; margin-bottom: 15px;">📊 ยอดขาย BO2</div>
+                        <div class="pad-group" style="margin-bottom: 15px;">
+                            <input type="checkbox" id="bo2InsLife" onchange="togglePremiumInputSeller('BO2', 'Life')">
+                            <label class="pad-label theme-orange" for="bo2InsLife">ประกันชีวิต</label>
+                            <input type="checkbox" id="bo2InsNonLife"
+                                onchange="togglePremiumInputSeller('BO2', 'NonLife')">
+                            <label class="pad-label" for="bo2InsNonLife">ประกันวินาศภัย</label>
+                        </div>
+                        <div id="bo2PremiumBox" style="display: none; flex-direction: column; gap: 15px;">
+                            <div class="sub-row" id="bo2PremiumLifeRow" style="display: none;">
+                                <span class="sub-label" style="width: 180px;">เบี้ยประกันชีวิต (BO2) :</span>
+                                <input type="number" id="bo2PremiumLifeAmount" class="minimal-input input-loan"
+                                    placeholder="ระบุจำนวนเงิน (THB)" min="0">
+                            </div>
+                            <div class="sub-row" id="bo2PremiumNonLifeRow" style="display: none;">
+                                <span class="sub-label" style="width: 180px;">เบี้ยประกันวินาศภัย (BO2) :</span>
+                                <input type="number" id="bo2PremiumNonLifeAmount" class="minimal-input input-loan"
+                                    placeholder="ระบุจำนวนเงิน (THB)" min="0">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label class="section-label">4. การตลาดออนไลน์ (Online Marketing)</label>
-            <input type="number" id="marketingPosts" class="minimal-input" placeholder="จำนวนโพสต์ (Posts)" min="0">
-        </div>
-
-        <div class="form-group">
-            <label class="section-label">5. ยอดจัดเก็บหนี้ (Debt Collection)</label>
-            <div class="pad-group" style="margin-bottom: 15px;">
-                <input type="checkbox" id="debtB0" value="B0" onchange="toggleDebtInput('B0')">
-                <label class="pad-label" for="debtB0">B0</label>
-
-                <input type="checkbox" id="debtB1" value="B1" onchange="toggleDebtInput('B1')">
-                <label class="pad-label" for="debtB1">B1</label>
-            </div>
-            
-            <div id="debtInputsContainer" class="sub-section">
+            <div class="form-group">
+                <label class="section-label">📱 4. การตลาด (Marketing)</label>
+                <div style="display:flex; gap:20px; flex-wrap:wrap;">
+                    <div style="flex:1; min-width:200px;">
+                        <div style="font-size:13px; font-weight:600; color:var(--primary); margin-bottom:8px;">📱
+                            ออนไลน์ (Online)</div>
+                        <input type="number" id="marketingPosts" class="minimal-input input-marketing"
+                            placeholder="จำนวนโพสต์ (Posts)" min="0">
+                    </div>
+                    <div style="flex:1; min-width:200px;">
+                        <div style="font-size:13px; font-weight:600; color:var(--primary); margin-bottom:8px;">🤝
+                            ออฟไลน์ (Offline)</div>
+                        <input type="number" id="marketingOffline" class="minimal-input input-marketing"
+                            placeholder="จำนวนกิจกรรม" min="0">
+                    </div>
                 </div>
-        </div>
-
-        <div class="form-group">
-            <label class="section-label">6. ยอดจัดเก็บประเภทโครงการช่วยเหลือ (Assistance Projects)</label>
-            <div class="pad-group">
-                <input type="checkbox" id="projAPCA" value="APCA" onchange="toggleProject('APCA', 'APCA')">
-                <label class="pad-label" for="projAPCA">APCA</label>
-
-                <input type="checkbox" id="projTRD" value="TRD" onchange="toggleProject('TRD', 'TRD')">
-                <label class="pad-label" for="projTRD">TRD</label>
-
-                <input type="checkbox" id="projPower" value="PowerApp" onchange="toggleProject('Power', 'ปิดปรับ Power App')">
-                <label class="pad-label" for="projPower">ปิดปรับ Power App</label>
-
-                <input type="checkbox" id="projHelp" value="Help" onchange="toggleProject('Help', 'คุณสู้เราช่วย')">
-                <label class="pad-label" for="projHelp">คุณสู้เราช่วย</label>
-
-                <input type="checkbox" id="projStep" value="StepUp" onchange="toggleProject('Step', 'ขั้นบันได Step Up')">
-                <label class="pad-label" for="projStep">Step Up Payment</label>
             </div>
 
-            <div id="projectDetailsContainer" class="sub-section" style="background-color: transparent; padding: 10px 0 0 0;">
+            <div class="form-group">
+                <label class="section-label">💵 5. ยอดจัดเก็บหนี้ (Debt Collection)</label>
+                <div class="pad-group" style="margin-bottom: 15px;">
+                    <input type="checkbox" id="debtB0" value="B0" onchange="toggleDebtInput('B0')">
+                    <label class="pad-label theme-green" for="debtB0">B0</label>
+                    <input type="checkbox" id="debtB1" value="B1" onchange="toggleDebtInput('B1')">
+                    <label class="pad-label theme-yellow" for="debtB1">B1</label>
                 </div>
-        </div>
+                <div id="debtInputsContainer" class="sub-section"></div>
+            </div>
 
-        <button type="button" class="submit-btn" onclick="submitData()">Submit Report</button>
-    </form>
-</div>
-
-<script>
-    // 2. วันที่อัตโนมัติ (แสดงที่มุมขวาบนให้ดูมินิมอล)
-    window.onload = () => {
-        const today = new Date();
-        const options = { day: '2-digit', month: 'short', year: 'numeric' };
-        document.getElementById('displayDate').innerText = today.toLocaleDateString('en-GB', options);
-    };
-
-    // 3. จัดการช่องยอดสินเชื่อ
-    function toggleLoanAmount() {
-        const isNoLoan = document.getElementById('noLoan').checked;
-        const loanInput = document.getElementById('loanAmount');
-        if (isNoLoan) {
-            loanInput.value = '';
-            loanInput.disabled = true;
-            loanInput.placeholder = "ไม่มียอดจัด";
-        } else {
-            loanInput.disabled = false;
-            loanInput.placeholder = "ระบุจำนวนเงิน (THB)";
-        }
-    }
-
-    // 4. จัดการผู้ขายประกัน
-    function toggleInsuranceSeller() {
-        const insNone = document.getElementById('insNone').checked;
-        const sellerBox = document.getElementById('sellerBox');
-        
-        if (insNone) {
-            sellerBox.classList.remove('active');
-            document.getElementById('sellerBM').checked = false;
-            document.getElementById('sellerBO').checked = false;
-        } else {
-            sellerBox.classList.add('active');
-        }
-    }
-
-    // 6. จัดการช่องกรอกยอดจัดเก็บหนี้ (แยก B0 และ B1 ชัดเจน)
-    function toggleDebtInput(type) {
-        const isChecked = document.getElementById('debt' + type).checked;
-        const container = document.getElementById('debtInputsContainer');
-        const inputId = 'input_debt_' + type;
-
-        if (isChecked) {
-            container.classList.add('active');
-            const div = document.createElement('div');
-            div.className = 'sub-row';
-            div.id = 'row_' + inputId;
-            div.innerHTML = `
-                <span class="sub-label">ยอดจัดเก็บ ${type} :</span>
-                <input type="number" id="${inputId}" class="minimal-input" placeholder="จำนวนเงิน (THB)" min="0">
-            `;
-            container.appendChild(div);
-        } else {
-            const rowToRemove = document.getElementById('row_' + inputId);
-            if (rowToRemove) rowToRemove.remove();
-            
-            // ซ่อนกล่องถ้าไม่มีอะไรถูกเลือกเลย
-            if (container.children.length === 0) {
-                container.classList.remove('active');
-            }
-        }
-    }
-
-    // 7. จัดการโครงการช่วยเหลือ (แสดงปุ่ม B0-B7 ทันทีที่เลือกโครงการ)
-    function toggleProject(id, name) {
-        const isChecked = document.getElementById('proj' + id).checked;
-        const container = document.getElementById('projectDetailsContainer');
-        const rowId = 'proj_row_' + id;
-
-        if (isChecked) {
-            container.classList.add('active');
-            
-            // สร้างกลุ่มปุ่ม B0-B7
-            let bOptions = '';
-            for(let i=0; i<=7; i++) {
-                bOptions += `
-                    <input type="radio" name="b_opt_${id}" id="b_opt_${id}_${i}" value="B${i}">
-                    <label class="pad-label" style="padding: 6px 14px; font-size: 12px;" for="b_opt_${id}_${i}">B${i}</label>
-                `;
-            }
-
-            const div = document.createElement('div');
-            div.className = 'sub-section active';
-            div.style.marginTop = '10px';
-            div.id = rowId;
-            div.innerHTML = `
-                <div style="font-size: 14px; font-weight: 500; margin-bottom: 10px; color: #111;">${name}</div>
+            <div class="form-group">
+                <label class="section-label">🤝 6. ยอดจัดเก็บประเภทโครงการช่วยเหลือ (Assistance Projects)</label>
                 <div class="pad-group">
-                    ${bOptions}
-                </div>
-            `;
-            container.appendChild(div);
-        } else {
-            const rowToRemove = document.getElementById(rowId);
-            if (rowToRemove) rowToRemove.remove();
+                    <input type="checkbox" id="projAPCA" value="APCA" onchange="toggleProject('APCA', 'APCA')">
+                    <label class="pad-label theme-proj-apca" for="projAPCA">APCA</label>
 
-            if (container.children.length === 0) {
-                container.classList.remove('active');
+                    <input type="checkbox" id="projTRD" value="TRD" onchange="toggleProject('TRD', 'TRD')">
+                    <label class="pad-label theme-proj-trd" for="projTRD">TRD</label>
+
+                    <input type="checkbox" id="projPower" value="PowerApp"
+                        onchange="toggleProject('Power', 'ปิดปรับ Power App')">
+                    <label class="pad-label theme-proj-power" for="projPower">ปิดปรับ Power App</label>
+
+                    <input type="checkbox" id="projHelp" value="Help" onchange="toggleProject('Help', 'คุณสู้เราช่วย')">
+                    <label class="pad-label theme-proj-help" for="projHelp">คุณสู้เราช่วย</label>
+
+                    <input type="checkbox" id="projStep" value="StepUp"
+                        onchange="toggleProject('Step', 'ขั้นบันได Step Up')">
+                    <label class="pad-label theme-proj-step" for="projStep">Step Up Payment</label>
+
+                    <input type="checkbox" id="projSkip" value="SkipPayment"
+                        onchange="toggleProject('Skip', 'Skip Payment')">
+                    <label class="pad-label theme-proj-skip" for="projSkip">Skip Payment</label>
+                </div>
+                <div id="projectDetailsContainer" class="sub-section"
+                    style="background-color: transparent; padding: 10px 0 0 0;"></div>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="submitData()">✨ บันทึกรายงาน ✨</button>
+        </form>
+    </div>
+
+    <script>
+        // 1. วันที่อัตโนมัติ (ภาษาไทย พ.ศ.)
+        window.onload = () => {
+            const today = new Date();
+            const thaiDate = today.toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('displayDate').innerText = thaiDate;
+        };
+
+        // 2. จัดการช่องยอดสินเชื่อ
+        function toggleLoanAmount() {
+            const isNoLoan = document.getElementById('noLoan').checked;
+            const loanInput = document.getElementById('loanAmount');
+            if (isNoLoan) {
+                loanInput.value = '';
+                loanInput.disabled = true;
+                loanInput.placeholder = "ไม่มียอดจัด";
+            } else {
+                loanInput.disabled = false;
+                loanInput.placeholder = "ระบุจำนวนเงิน (THB)";
             }
         }
-    }
 
-    function submitData() {
-        alert("บันทึกข้อมูลสำเร็จ (ดีไซน์จำลอง)");
-    }
-</script>
+        // 3. จัดการผู้ขายประกันและจำนวนเบี้ย
+        function toggleInsuranceNone() {
+            const insNone = document.getElementById('insNone');
+            const container = document.getElementById('insuranceContainer');
+            const labelInsNone = document.getElementById('labelInsNone');
+            if (insNone.checked) {
+                container.style.opacity = '0.5';
+                container.style.pointerEvents = 'none';
+                document.getElementById('sellerBM').checked = false;
+                document.getElementById('sellerBO').checked = false;
+                toggleSellerSection('BM');
+                toggleSellerSection('BO');
+            } else {
+                container.style.opacity = '1';
+                container.style.pointerEvents = 'auto';
+            }
+        }
+
+        function toggleSellerSection(sellerId) {
+            const isChecked = document.getElementById('seller' + sellerId).checked;
+            const section = document.getElementById('section' + sellerId);
+            if (isChecked) {
+                section.classList.add('active');
+                const insNone = document.getElementById('insNone');
+                if (insNone.checked) { insNone.checked = false; toggleInsuranceNone(); }
+            } else {
+                section.classList.remove('active');
+                document.getElementById(sellerId.toLowerCase() + 'InsLife').checked = false;
+                document.getElementById(sellerId.toLowerCase() + 'InsNonLife').checked = false;
+                document.getElementById(sellerId.toLowerCase() + 'PremiumLifeAmount').value = '';
+                document.getElementById(sellerId.toLowerCase() + 'PremiumNonLifeAmount').value = '';
+                togglePremiumInputSeller(sellerId, 'Life');
+                togglePremiumInputSeller(sellerId, 'NonLife');
+            }
+        }
+
+        function togglePremiumInputSeller(sellerId, insType) {
+            const isChecked = document.getElementById(sellerId.toLowerCase() + 'Ins' + insType).checked;
+            const row = document.getElementById(sellerId.toLowerCase() + 'Premium' + insType + 'Row');
+            const premiumBox = document.getElementById(sellerId.toLowerCase() + 'PremiumBox');
+            const isLifeChecked = document.getElementById(sellerId.toLowerCase() + 'InsLife').checked;
+            const isNonLifeChecked = document.getElementById(sellerId.toLowerCase() + 'InsNonLife').checked;
+            if (isChecked) {
+                row.style.display = 'flex';
+            } else {
+                row.style.display = 'none';
+                document.getElementById(sellerId.toLowerCase() + 'Premium' + insType + 'Amount').value = '';
+            }
+            if (isLifeChecked || isNonLifeChecked) {
+                premiumBox.style.display = 'flex';
+            } else {
+                premiumBox.style.display = 'none';
+            }
+        }
+        // 5. จัดการช่องกรอกยอดจัดเก็บหนี้
+        function toggleDebtInput(type) {
+            const isChecked = document.getElementById('debt' + type).checked;
+            const container = document.getElementById('debtInputsContainer');
+            const rowId = 'row_debt_' + type;
+            if (isChecked) {
+                container.classList.add('active');
+                const div = document.createElement('div');
+                div.id = rowId;
+                div.style.cssText = 'margin-bottom:20px; padding:15px; background:#f8faff; border-radius:12px; border-left:3px solid var(--guardian-blue);';
+                div.innerHTML = `
+                    <div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:12px;">${type} รายละเอียด</div>
+                    <div class="sub-row">
+                        <span class="sub-label" style="color:var(--secondary);">จำนวนราย :</span>
+                        <input type="number" id="input_debt_${type}_count" class="minimal-input input-debt"
+                            placeholder="เช่น 5 ราย" min="0" style="flex:1;">
+                    </div>
+                    <div class="sub-row" style="margin-top:10px;">
+                        <span class="sub-label" style="color:var(--secondary);">ยอดจัดเก็บ (THB) :</span>
+                        <input type="number" id="input_debt_${type}_amount" class="minimal-input input-debt"
+                            placeholder="จำนวนเงิน" min="0" style="flex:1;">
+                    </div>
+                `;
+                container.appendChild(div);
+            } else {
+                const rowToRemove = document.getElementById(rowId);
+                if (rowToRemove) rowToRemove.remove();
+                if (container.children.length === 0) container.classList.remove('active');
+            }
+        }
+
+        // 6. จัดการโครงการช่วยเหลือ
+        function toggleProject(id, name) {
+            const isChecked = document.getElementById('proj' + id).checked;
+            const container = document.getElementById('projectDetailsContainer');
+            const rowId = 'proj_row_' + id;
+            if (isChecked) {
+                container.classList.add('active');
+                let bOptions = '';
+                for (let i = 0; i <= 7; i++) {
+                    bOptions += `<input type="radio" name="b_opt_${id}" id="b_opt_${id}_${i}" value="B${i}"><label class="pad-label gold-theme" style="padding: 6px 14px; font-size: 12px;" for="b_opt_${id}_${i}">B${i}</label>`;
+                }
+                const div = document.createElement('div');
+                div.className = 'sub-section active';
+                div.style.marginTop = '10px';
+                div.id = rowId;
+                div.innerHTML = `<div style="font-size: 15px; font-weight: 500; margin-bottom: 15px; color: var(--guardian-gold);">${name}</div><div class="pad-group">${bOptions}</div><div class="sub-row" style="margin-top: 20px;"><span class="sub-label" style="color: var(--primary);">ยอดจัดเก็บ (THB) :</span><input type="number" id="input_proj_${id}" class="minimal-input input-project" placeholder="ระบุจำนวนเงิน" min="0" style="flex: 1;"></div>`;
+                container.appendChild(div);
+            } else {
+                const rowToRemove = document.getElementById(rowId);
+                if (rowToRemove) rowToRemove.remove();
+                if (container.children.length === 0) container.classList.remove('active');
+            }
+        }
+
+        function submitData() {
+            alert("บันทึกข้อมูลสำเร็จ (ดีไซน์จำลอง)");
+        }
+    </script>
 
 </body>
-</html>
 
+</html>
